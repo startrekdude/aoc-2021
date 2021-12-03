@@ -7,8 +7,6 @@ with open(path) as f:
 gamma_rate = ""
 epsilon_rate = ""
 
-most_common = {}
-
 for i in range(len(lines[0])):
 	zeros = 0
 	ones = 0
@@ -22,14 +20,9 @@ for i in range(len(lines[0])):
 	if zeros > ones:
 		gamma_rate += "0"
 		epsilon_rate += "1"
-		most_common[i] = "0"
 	else:
 		gamma_rate += "1"
 		epsilon_rate += "0"
-		most_common[i] = "1"
-	
-	if zeros == ones:
-		most_common[i] = "EQ"
 
 gamma_rate = int(gamma_rate, 2)
 epsilon_rate = int(epsilon_rate, 2)
