@@ -1,5 +1,4 @@
 from collections import defaultdict
-from copy import copy
 from sys import argv as args
 
 path = args[1] if len(args) >= 2 else "sample-input.txt"
@@ -20,9 +19,9 @@ def paths(prefix, visited):
 	cur = prefix[-1]
 	for vertex in adjacent[cur]:
 		if vertex == "end":
-			yield copy(prefix) + ["end"]
+			yield prefix + ["end"]
 		elif vertex.isupper() or vertex not in visited:
-			yield from paths(copy(prefix) + [vertex], copy(visited) | {vertex})
+			yield from paths(prefix + [vertex], visited | {vertex})
 
 def paths2(prefix, visited, any_visited_twice):
 	twice = any_visited_twice
@@ -46,9 +45,9 @@ def paths2(prefix, visited, any_visited_twice):
 	cur = prefix[-1]
 	for vertex in adjacent[cur]:
 		if vertex == "end":
-			yield copy(prefix) + ["end"]
+			yield prefix + ["end"]
 		elif can_visit(vertex):
-			yield from paths2(copy(prefix) + [vertex], copy(visited) | {vertex}, twice)
+			yield from paths2(prefix + [vertex], visited | {vertex}, twice)
 
 def pprint_paths(paths):
 	for path in paths:
