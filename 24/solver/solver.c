@@ -36,7 +36,8 @@ typedef struct {
 typedef struct {
 	digit_pair_t task;
 	uint64_t progress;
-	uint64_t result;
+	uint64_t min_result;
+	uint64_t max_result;
 	bool complete;
 } task_comm_t;
 
@@ -64,15 +65,14 @@ void* worker(void *arg) {
 		);
 		
 		if (result == 0) {
-			comm->result = combine_digits(
+			comm->max_result = combine_digits(
 				digit1, digit2, digit3, digit4, digit5, digit6, digit7,
 				digit8, digit9, digit10, digit11, digit12, digit13, digit14
 			);
 			
-#ifdef PART2
-			comm->complete = true;
-			return 0;
-#endif
+			if (comm->min_result == 0) {
+				comm->min_result = comm->max_result;
+			}
 		}
 	}
 	}
@@ -98,7 +98,8 @@ void run_worker_group(digit_pair_t *tasks, int si, int ei) {
 	for (int i = 0; i < ei - si; ++i) {
 		comm[i].task = tasks[si + i];
 		comm[i].progress = 0;
-		comm[i].result = 0;
+		comm[i].min_result = 0;
+		comm[i].max_result = 0;
 		comm[i].complete = false;
 		
 		printf("Thread #%d will do (%u, %u).\n", i + 1, comm[i].task.digit1, comm[i].task.digit2);
@@ -125,7 +126,7 @@ void run_worker_group(digit_pair_t *tasks, int si, int ei) {
 	
 	puts("Results.");
 	for (int i = 0; i < ei - si; ++i) {
-		printf("#%d %llu\n", i + 1, comm[i].result);
+		printf("#%d %llu %llu\n", i + 1, comm[i].min_result, comm[i].max_result);
 	}
 }
 
@@ -144,14 +145,16 @@ int main(int argc, char **argv) {
 	run_worker_group(pairs, 0, 16);
 	
 	puts("Second worker group.");
-	run_worker_group(pairs, 16, 32);
+	run_worker_group(pairs, 64, 81);
 	
 	puts("Third worker group.");
-	run_worker_group(pairs, 32, 48);
+	run_worker_group(pairs, 16, 32);
+	
+	puts("(you may Ctrl+C now.)");
 	
 	puts("Fourth worker group.");
 	run_worker_group(pairs, 48, 64);
 	
 	puts("Fifth worker group.");
-	run_worker_group(pairs, 64, 81);
+	run_worker_group(pairs, 32, 48);	
 }

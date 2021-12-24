@@ -67,18 +67,14 @@ chdir("solver")
 with open("kernel.c", "w") as f:
 	f.write(kernel(lines))
 
-def compile_worker(opt):
+def compile_worker():
 	subprocess.call([
 		"gcc",
 		"-osolver.exe",
 		"solver.c",
 		"-O3",
 		"-march=native",
-		opt,
 	])
 
-compile_worker("-DPART1")
-subprocess.call(["solver"])
-
-compile_worker("-DPART2")
+compile_worker()
 subprocess.call(["solver"])
