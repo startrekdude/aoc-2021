@@ -7,9 +7,9 @@
 #include "kernel.c"
 
 uint64_t combine_digits(
-	const uint8_t digit1, const uint8_t digit2, const uint8_t digit3, const uint64_t digit4,
-	const uint8_t digit5, const uint8_t digit6, const uint8_t digit7, const uint64_t digit8,
-	const uint8_t digit9, const uint8_t digit10, const uint8_t digit11, const uint64_t digit12,
+	const uint8_t digit1, const uint8_t digit2, const uint8_t digit3, const uint8_t digit4,
+	const uint8_t digit5, const uint8_t digit6, const uint8_t digit7, const uint8_t digit8,
+	const uint8_t digit9, const uint8_t digit10, const uint8_t digit11, const uint8_t digit12,
 	const uint8_t digit13, const uint8_t digit14
 ) {
 	return digit14 +
