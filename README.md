@@ -2,6 +2,15 @@
 
 Organized in a fairly self-explanatory way; `01` has the first day and so on. My main language is Python. I'll try to comment anything that isn't obvious but ultimately I am going for time so please excuse bad code quality. Let's save Christmas!
 
+## Results
+
+*(accurate as of December 27<sup>th</sup>, 2021)*
+
+* 45<sup>th</sup>, globally, for the second :star: of day 8.
+* First place :1st_place_medal: on the [Carleton Computer Science Society](https://ccss.carleton.ca/) leaderboard, which also includes many people from [uOttawa](https://www.youtube.com/watch?v=dQw4w9WgXcQ).
+* First place :1st_place_medal: on the (semi? un?)-official Waterloo leaderboard. At least, I can't find a *more* official one via Google and various peoples tell me it's the right one.
+* And most importantly........ had a lot of fun!
+
 ## Times
 
 | Day #  | Part 1     | Part 2             |
